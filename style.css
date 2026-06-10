@@ -70,7 +70,7 @@ main button{
 .ligue h2{
     font-size: 20px;
     font-weight: bold;
-    max-width: 50%;
+    min-width: 50%;
     margin: 0%;
 }
 .primary{
@@ -79,10 +79,12 @@ main button{
     flex-direction: column;
     justify-content:flex-start;
     text-align: center;
-    min-height: 725px;
+    min-height: 810px;
 }
 .primary h1{
     color: #97f8fb;
+    margin-top: 4%;
+    font-size: 40px;
 }
 .primary h2{
     color: white;
@@ -96,11 +98,15 @@ main button{
 .meals{
     background-color: rgb(219 219 202);
     height: 300px;
-    border-radius: 35px;
-    margin-top: 1%;
+    border-radius: 25px;
+    margin-top: 2%;
 }
 .meals h1{
     color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-block-end: auto;
+    margin-top: 2%;
+
 }
 .meals h2{
     color: #2e2e2e;
@@ -143,9 +149,11 @@ main button{
     color: #2e2e2e;
     font-size: larger;
     font-weight: bold;
+    margin-bottom: 1%;
 }
 .activities ul{
     margin-left: 5%;
+    list-style-type: none;
 }
 .secondary{
     display: flex;
@@ -156,7 +164,7 @@ main button{
     background-repeat: no-repeat;
 }
 .secondary h1{
-    color: #436d9d;
+    color: #00418b;
     font-size: 60px;
     font-family: math;
 }
@@ -168,7 +176,7 @@ main button{
 }
 .heart{
     width: 45%;
-    background-color: #bfcbd9;
+    background-color: white;
     border-radius: 25px;
     min-height: 300px;
     margin-top: 2%;
@@ -186,7 +194,7 @@ main button{
 }
 .sleep{
     width: 45%;
-    background-color: #bfcbd9;
+    background-color: white;
     border-radius: 25px;
     min-height: 300px;
     margin-top: 2%;
@@ -203,11 +211,27 @@ main button{
     max-width: 90%;
 }
 .consultas{
-    min-width: 100%;
-    background-color: #bfcbd9;
+    background-color: #f5f5dc;
     border-radius: 25px;
     min-height: 300px;
-    margin-top: 2%;
+    margin-top: 3%;
+}
+.consultas h1{
+    color:black;
+    font-size: 40px;
+    margin-block-end: inherit;
+}
+.consultas li{
+    text-align: left;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #2e2e2e;
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+.consultas ul{
+    margin-left: 2%;
+    list-style-type: none;
 }
 body{
     margin: 0%;
