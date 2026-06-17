@@ -21,6 +21,8 @@ body {
     width: 100%;
     max-width: 440px;
     border-top: 4px solid #1351b4; /* Azul padrão gov.br */
+    height: auto;
+    min-height: 440px;
 }
 
 .gov-logo {

@@ -1,0 +1,168 @@
+/* Reset de estilos básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Rawline", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Barra de Identidade do Governo */
+        .gov-header-bar {
+            background-color: #1351b4;
+            color: #ffffff;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .gov-header-bar span {
+            opacity: 0.9;
+        }
+
+        /* Cabeçalho Principal */
+        .main-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e9ecef;
+            padding: 20px 16px;
+        }
+
+        .header-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-placeholder {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1351b4;
+            text-decoration: none;
+        }
+
+        .logo-placeholder span {
+            color: #00a859; /* Toque de verde sutil */
+        }
+
+        /* Container de Conteúdo */
+        .content-container {
+            max-width: 1140px;
+            margin: 40px auto;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .content-container {
+                grid-template-columns: 300px 1fr;
+            }
+        }
+
+        /* Menu Lateral / Sumário */
+        .sidebar-nav {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar-nav h3 {
+            font-size: 16px;
+            color: #1351b4;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2670e8;
+            padding-bottom: 5px;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav ul li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar-nav ul li a {
+            color: #4b5c6b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .sidebar-nav ul li a:hover {
+            color: #1351b4;
+            text-decoration: underline;
+        }
+
+        /* Área do Texto Principal */
+        .main-text {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+        }
+
+        .main-text h1 {
+            font-size: 28px;
+            color: #1351b4;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #888888;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 15px;
+        }
+
+        .main-text h2 {
+            font-size: 20px;
+            color: #1351b4;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .main-text p {
+            font-size: 15px;
+            color: #333333;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .main-text ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .main-text ul li {
+            font-size: 15px;
+            color: #333333;
+            margin-bottom: 8px;
+        }
+
+        /* Rodapé */
+        .main-footer {
+            background-color: #1351b4;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 16px;
+            margin-top: 60px;
+            font-size: 14px;
+        }

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Carregando Serviço... - gov.br</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Rawline", sans-serif; }
+        body { background-color: #f4f6f8; color: #333333; line-height: 1.6; }
+        .gov-header-bar { background-color: #003366; color: #ffffff; padding: 8px 16px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        .main-header { background-color: #ffffff; border-bottom: 1px solid #e9ecef; padding: 20px 16px; }
+        .header-container { max-width: 1140px; margin: 0 auto; }
+        .logo-placeholder { font-size: 24px; font-weight: 800; color: #002f6c; text-decoration: none; }
+        .logo-placeholder span { color: #00875a; }
+        .back-link { max-width: 1140px; margin: 20px auto 0; padding: 0 16px; }
+        .back-link a { color: #0056b3; text-decoration: none; font-size: 14px; font-weight: bold; }
+        .main-container { max-width: 1140px; margin: 20px auto 60px; padding: 0 16px; display: grid; grid-template-columns: 1fr; gap: 30px; }
+        @media (min-width: 768px) { .main-container { grid-template-columns: 1fr 350px; } }
+        .service-info { background: #ffffff; padding: 30px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .service-info h1 { font-size: 26px; color: #002f6c; margin-bottom: 10px; }
+        .service-description { font-size: 16px; color: #4a5568; margin-bottom: 30px; }
+        .step-section h2 { font-size: 18px; color: #002f6c; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; }
+        .step-card { background: #f8fafc; border-left: 4px solid #0056b3; padding: 15px; margin-bottom: 15px; border-radius: 0 4px 4px 0; }
+        .step-card h3 { font-size: 15px; color: #334155; margin-bottom: 5px; }
+        .service-action-sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .action-card { background: #ffffff; padding: 24px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; }
+        .btn-start { display: block; background-color: #00875a; color: #ffffff; text-decoration: none; padding: 14px; border-radius: 4px; font-weight: bold; font-size: 16px; }
+        .attributes-card { background: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .attr-item { margin-bottom: 15px; font-size: 14px; }
+        .attr-item span { display: block; color: #718096; font-size: 12px; text-transform: uppercase; font-weight: bold; }
+        .attr-item strong { color: #2d3748; }
+        .main-footer { background-color: #002f6c; color: #ffffff; text-align: center; padding: 24px 16px; font-size: 14px; position: fixed; bottom: 0; width: 100%; }
+        @media (min-height: 800px) { .main-footer { position: relative; margin-top: 60px; } }
+    </style>
+</head>
+<body>
+
+    <div class="gov-header-bar"><span>brasil.gov.br</span></div>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="logo-placeholder">Facilita<span>Saúde</span></a>
+        </div>
+    </header>
+    
+    <div class="back-link">
+        <a href="services.html">&larr; Voltar para Serviços</a>
+    </div>
+
+    <main class="main-container">
+        <section class="service-info">
+            <h1 id="srvTitle">Nome do Serviço</h1>
+            <p class="service-description" id="srvDesc">Descrição do serviço...</p>
+
+            <div class="step-section">
+                <h2>Como realizar este serviço</h2>
+                <div id="srvSteps">
+                    <!-- Passos injetados pelo JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <aside class="service-action-sidebar">
+            <div class="action-card"><a href="atendimento.html" class="btn-start">Iniciar Atendimento</a></div>
+            <div class="attributes-card">
+                <div class="attr-item"><span>Quem pode utilizar?</span><strong id="srvUser">Cidadão</strong></div>
+                <div class="attr-item"><span>Custos</span><strong id="srvCost">Gratuito</strong></div>
+                <div class="attr-item"><span>Tempo estimado</span><strong id="srvTime">Variável</strong></div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="main-footer"><p>&copy; 2026 FacilitaSaúde.</p></footer>
+
+    <script>
+        // Banco de dados dos 6 serviços
+        const bancoServicos = {
+            vacina: {
+                titulo: "Carteira de Vacinação Digital",
+                desc: "Consulte o histórico completo de vacinas aplicadas no território nacional pelo SUS e emita seu certificado digital.",
+                usuario: "Qualquer cidadão brasileiro com CPF.",
+                custo: "Gratuito (Serviço Público)",
+                tempo: "Imediato pelo aplicativo.",
+                passos: ["Faça login com sua conta gov.br.", "Acesse a aba 'Vacinas' no menu do aplicativo.", "Clique em 'Exportar PDF' para salvar seu comprovante."]
+            },
+            consultas: {
+                titulo: "Agendamento de Consultas",
+                desc: "Solicite, confirme ou reagende consultas médicas diretamente na Unidade Básica de Saúde (UBS) de sua preferência.",
+                usuario: "Cidadãos cadastrados no SUS na sua cidade.",
+                custo: "Gratuito (Serviço Público)",
+                tempo: "Depende da agenda do posto local.",
+                passos: ["Escolha a especialidade médica necessária.", "Selecione o posto de saúde mais próximo.", "Escolha o dia e horário disponíveis e confirme."]
+            },
+            farmacia: {
+                titulo: "Farmácia Popular",
+                desc: "Consulte quais medicamentos para diabetes, hipertensão e asma estão disponíveis gratuitamente na sua região.",
+                usuario: "Pacientes com receita médica válida.",
+                custo: "Gratuito ou desconto de até 90%.",
+                tempo: "Retirada imediata na farmácia parceira.",
+                passos: ["Localize uma farmácia com o selo 'Aqui Tem Farmácia Popular'.", "Apresente sua receita médica dentro do prazo de validade.", "Apresente seu documento oficial com foto e CPF."]
+            },
+            cns: {
+                titulo: "Cartão Nacional de Saúde (CNS)",
+                desc: "Emita ou consulte o número do seu Cartão do SUS eletrônico para garantir atendimento em hospitais e postos.",
+                usuario: "Todos os cidadãos residentes no Brasil.",
+                custo: "Gratuito (Serviço Público)",
+                tempo: "Imediato (Geração digital).",
+                passos: ["Verifique seus dados cadastrais importados do gov.br.", "Visualize o código de barras e o número de 15 dígitos.", "Salve a imagem na galeria do celular ou imprima."]
+            },
+            exames: {
+                titulo: "Resultado de Exames",
+                desc: "Visualize de forma centralizada os laudos e históricos de exames clínicos colhidos na rede pública de saúde.",
+                usuario: "Pacientes que realizaram exames na rede SUS.",
+                custo: "Gratuito (Serviço Público)",
+                tempo: "Disponível assim que o laboratório liberar.",
+                passos: ["Insira o protocolo impresso entregue no dia da coleta.", "Confirme sua identidade via token SMS ou gov.br.", "Visualize ou faça o download dos arquivos em PDF."]
+            },
+            doacao: {
+                titulo: "Doação de Sangue e Órgãos",
+                desc: "Manifeste seu desejo de salvar vidas agendando uma triagem no hemocentro ou deixando registrada sua intenção de doação.",
+                usuario: "Pessoas de 16 a 69 anos com boa saúde.",
+                custo: "Voluntário / Gratuito",
+                tempo: "A triagem leva cerca de 1 hora.",
+                passos: ["Confira se cumpre os requisitos de peso e saúde na lista oficial.", "Escolha o hemocentro mais próximo de você.", "Agende o melhor horário para realizar a coleta de sangue."]
+            }
+        };
+
+        // Lógica para ler a URL externa (?servico=nome)
+        const urlParams = new URLSearchParams(window.location.search);
+        const servicoChave = urlParams.get('servico') || 'vacina'; // padrão se falhar
+        const dados = bancoServicos[servicoChave];
+
+        if (dados) {
+            // Injeta os dados na página de forma automática
+            document.getElementById('pageTitle').textContent = dados.titulo + " - gov.br";
+            document.getElementById('srvTitle').textContent = dados.titulo;
+            document.getElementById('srvDesc').textContent = dados.desc;
+            document.getElementById('srvUser').textContent = dados.usuario;
+            document.getElementById('srvCost').textContent = dados.custo;
+            document.getElementById('srvTime').textContent = dados.tempo;
+
+            // Cria a lista de passos na tela
+            const containerPassos = document.getElementById('srvSteps');
+            dados.passos.forEach((textoPasso, index) => {
+                const div = document.createElement('div');
+                div.className = 'step-card';
+                div.innerHTML = `<h3>Etapa ${index + 1}</h3><p>${textoPasso}</p>`;
+                containerPassos.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento Virtual</title>
+    <style>
+        /* Estilos Base inspirados no gov.br */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Rawline", sans-serif;
+        }
+        body { 
+            background-color: 
+            #f4f6f8; 
+            color: #333333; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+        }
+        
+        .gov-header-bar { 
+            background-color: 
+            #003366; 
+            color: #ffffff; 
+            padding: 8px 16px; 
+            font-size: 12px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+        }
+        .main-header { 
+            background-color: 
+            #ffffff; 
+            border-bottom: 1px solid #e9ecef; 
+            padding: 15px 16px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; }
+        .logo-placeholder { 
+            font-size: 20px; 
+            font-weight: 800; 
+            color: #002f6c; 
+            text-decoration: none; 
+        }
+        .logo-placeholder span { 
+            color: #00875a; 
+        }
+        .back-link { 
+            color: #0056b3; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: bold; 
+        }
+
+        /* Container do Chat */
+        .chat-container { 
+            flex: 1; max-width: 
+            600px; 
+            width: 100%; 
+            margin: 20px auto; 
+            background: #ffffff; 
+            border-radius: 8px; 
+            border: 1px solid #e2e8f0; 
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+        }
+        
+        /* Cabeçalho do Chatbot */
+        .chat-header { 
+            background-color: #002f6c; 
+            color: white; 
+            padding: 15px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        .bot-avatar { 
+            width: 35px; 
+            height: 35px; 
+            background: #00875a; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 14px; 
+        }
+        .chat-header h2 { 
+            font-size: 16px; 
+            font-weight: 600; 
+        }
+        .chat-header p { 
+            font-size: 12px; 
+            opacity: 0.8; 
+        }
+
+        /* Área de Mensagens */
+        .chat-messages { 
+            flex: 1; 
+            padding: 20px; 
+            overflow-y: auto; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            background: #f8fafc; 
+        }
+        
+        .message { 
+            max-width: 80%; 
+            padding: 12px 16px; 
+            border-radius: 8px; 
+            font-size: 14px; 
+            line-height: 1.5; 
+            animation: fadeIn 0.3s ease; 
+        }
+        .message.bot { 
+            background-color: #e2e8f0; 
+            color: #1e293b; 
+            align-self: flex-start; 
+            border-top-left-radius: 0; 
+        }
+        .message.user { 
+            background-color: #0056b3; 
+            color: white; 
+            align-self: flex-end; 
+            border-top-right-radius: 0; 
+        }
+
+        /* Opções de Resposta Cliváveis (Estilo App) */
+        .chat-options { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 8px; 
+            margin-top: 5px; 
+        }
+        .option-btn { 
+            background: #ffffff; 
+            border: 1px solid #0056b3; 
+            color: #0056b3; 
+            padding: 8px 14px; 
+            border-radius: 20px; 
+            font-size: 13px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+        }
+        .option-btn:hover { 
+            background: #0056b3; 
+            color: white; 
+        }
+
+        /* Rodapé de Entrada */
+        .chat-input-area { 
+            padding: 15px; 
+            
+            background: #ffffff; 
+            border-top: 1px solid #e2e8f0; 
+            display: flex; 
+            gap: 10px; 
+        }
+        .chat-input-area input { 
+            flex: 1; 
+            border: 1px solid #ccd1d6; 
+            padding: 12px; 
+            border-radius: 4px; 
+            outline: none; 
+            font-size: 14px; 
+        }
+        .chat-input-area button { 
+            background: #00875a; 
+            color: white; 
+            border: none; 
+            padding: 0 20px; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+        .chat-input-area button:hover { 
+            background: #006644; 
+        }
+
+        @keyframes fadeIn { 
+            from { 
+                opacity: 0; 
+                transform: translateY(5px); 
+            } to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gov-header-bar"><span>brasil.gov.br</span></div>
+    
+    <header class="main-header">
+        <a href="index.html" class="logo-placeholder">Facilita<span>Saúde</span></a>
+        <a href="services.html" class="back-link">Voltar</a>
+    </header>
+
+    <div class="chat-container">
+        <!-- Cabeçalho do Robô -->
+        <div class="chat-header">
+            <div class="bot-avatar">FS</div>
+            <div>
+                <h2>Assistente Virtual de Triagem</h2>
+                <p>Atendimento Automatizado de Saúde</p>
+            </div>
+        </div>
+
+        <!-- Mensagens -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                Olá! Sou o assistente digital do FacilitaSaúde. Para começarmos
+                sua triagem prévia, por favor, me informe qual o motivo
+                principal do seu contato hoje?
+                <div class="chat-options">
+                    <button class="option-btn"
+                        onclick="selecionarOpcao('Sintomas de Gripe / Dengue', 'sintomas')">
+                        Estou com sintomas físicos
+                    </button>
+                    <button class="option-btn"
+                        onclick="selecionarOpcao('Agendamentos ou Vacinas', 'servicos')">
+                        Dúvidas sobre serviços ou vacinas
+                    </button>
+                    <button class="option-btn"
+                        onclick="selecionarOpcao('Outros assuntos', 'outros')">
+                        Outros Assuntos
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input de texto -->
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Digite sua mensagem aqui..." onkeypress="checarEnter(event)">
+            <button onclick="enviarMensagemTexto()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+
+        // Função para simular digitação do usuário via botões
+        function selecionarOpcao(textoUsuario, fluxo) {
+            adicionarMensagem(textoUsuario, 'user');
+            
+            // Simula um atraso na resposta do robô
+            setTimeout(() => {
+                direcionarFluxo(fluxo);
+            }, 800);
+        }
+
+        // Envio de texto manual campo input
+        function enviarMensagemTexto() {
+            const texto = userInput.value.trim();
+            if (texto === "") return;
+            
+            adicionarMensagem(texto, 'user');
+            userInput.value = "";
+
+            setTimeout(() => {
+                adicionarMensagem("Compreendi. Para que eu possa te ajudar de forma precisa, por favor selecione uma das opções estruturadas do fluxo acima, ou digite 'Sair' para encerrar.", 'bot');
+            }, 800);
+        }
+
+        function checarEnter(event) {
+            if (event.key === 'Enter') enviarMensagemTexto();
+        }
+
+        // Adiciona o balão de mensagem no chat
+        function adicionarMensagem(texto, remetente) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${remetente}`;
+            msgDiv.innerHTML = texto;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Rola a tela para baixo
+        }
+
+        // Árvore de decisão básica do Chatbot
+        function direcionarFluxo(fluxo) {
+            if (fluxo === 'sintomas') {
+                adicionarMensagem(`Entendi. Você apresenta febre alta, dores no corpo ou manchas vermelhas na pele? 
+                    <div class="chat-options">
+                        <button class="option-btn" onclick="selecionarOpcao('Sim, tenho esses sintomas', 'urgencia')">Sim, tenho</button>
+                        <button class="option-btn" onclick="selecionarOpcao('Não, são outros sintomas leves', 'ambulatorio')">Não, são leves</button>
+                    </div>`, 'bot');
+            } else if (fluxo === 'urgencia') {
+                adicionarMensagem("⚠️ <strong>Alerta de Triagem:</strong> Seus sintomas sugerem a necessidade de uma avaliação presencial rápida. Recomendamos que você se dirija à Unidade de Pronto Atendimento (UPA) mais próxima.", 'bot');
+            } else if (fluxo === 'ambulatorio') {
+                adicionarMensagem("Para sintomas leves, o ideal é realizar um agendamento prévio com o clínico geral. Deseja retornar à página anterior para marcar sua consulta?", 'bot');
+            } else if (fluxo === 'servicos') {
+                adicionarMensagem("Todas as informações de prazos, agendamentos e carteira de vacinação digital estão disponíveis no painel de serviços. Você já possui cadastro ativo no sistema FacilitaSaúde?", 'bot');
+            } else if (fluxo === 'outros') {
+                adicionarMensagem("Para outras demandas ou registro de reclamações, você também pode ligar gratuitamente para o Disque Saúde pelo número <strong>136</strong>.", 'bot');
+            }
+        }
+    </script>
+</body>
+</html>

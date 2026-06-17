@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços de Saúde</title>
+    <style>
+        /* Reset e Estilos de Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Rawline", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Barra de Identidade do Governo */
+        .gov-header-bar {
+            background-color: rgb(19, 81, 180);
+            color: #ffffff;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Cabeçalho Principal */
+        .main-header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e9ecef;
+            padding: 20px 16px;
+        }
+
+        .header-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-placeholder {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1351b4;
+            text-decoration: none;
+        }
+
+        .logo-placeholder span {
+            color: #00a859;
+        }
+
+        .app-badge {
+            background-color: #007a87;
+            color: white;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Seção de Busca (Visual do App SUS/gov.br) */
+        .hero-search {
+            background: linear-gradient(135deg, #002f6c 0%, #0056b3 100%);
+            color: #ffffff;
+            padding: 50px 16px;
+            text-align: center;
+
+        }
+
+        .hero-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-search h1 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .hero-search p {
+            font-size: 15px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            display: flex;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 16px 20px;
+            font-size: 16px;
+            outline: none;
+            color: #333333;
+        }
+
+        .search-box input::placeholder {
+            color: #888888;
+        }
+
+        /* Container Principal */
+        .main-container {
+            max-width: 1140px;
+            margin: 40px auto;
+            padding: 0 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #002f6c;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* Grid de Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Cartão de Serviço (Card) */
+        .service-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+            border-color: #0056b3;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            color: #002f6c;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: #627282;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Rodapé do Card */
+        .service-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f1f3f5;
+            padding-top: 14px;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+
+        .service-meta strong {
+            color: #333333;
+        }
+
+        .status-badge {
+            background-color: #e6f4ea;
+            color: #137333;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        /* Mensagem de nenhum resultado */
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: #666666;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px dashed #ccd1d6;
+        }
+
+        /* Rodapé */
+        .main-footer {
+            background-color: #002f6c;
+            color: #ffffff;
+            text-align: center;
+            padding: 24px 16px;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra Superior Federal -->
+    <div class="gov-header-bar">
+        <span>BRASIL.PR.GOV.BR</span>
+    </div>
+
+    <!-- Cabeçalho Institucional -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-placeholder">Facilita<span>Saúde</span></a>
+        </div>
+    </header>
+
+    <!-- Área de Busca Inteligente -->
+    <section class="hero-search">
+        <div class="hero-container">
+            <h1>Serviços de Saúde</h1>
+            <p>Encontre consultas, exames, registros de vacinação e medicamentos do SUS</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="O que você está procurando? (Ex: vacina, remédio, consulta...)">
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de Serviços -->
+    <main class="main-container">
+        
+        <h2 class="section-title" id="gridTitle">Todos os Serviços Disponíveis</h2>
+
+        <!-- Mensagem de erro caso a busca falhe -->
+        <div class="no-results" id="noResultsMessage">
+            Nenhum serviço de saúde foi encontrado para a sua busca. Tente outros termos.
+        </div>
+
+        <div class="services-grid" id="servicesGrid">
+    
+    <!-- Card 1 -->
+    <a href="cards-services.html?servico=vacina" class="service-card">
+        <div>
+            <h3>Carteira de Vacinação Digital</h3>
+            <p>Consulte o histórico completo de vacinas aplicadas, doses pendentes e emita o certificado nacional de vacinação.</p>
+        </div>
+        <div class="service-meta">
+            <span>Acesso: <strong>Imediato (App)</strong></span>
+            <span class="status-badge">SUS / Gratuito</span>
+        </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="cards-services.html?servico=consultas" class="service-card">
+        <div>
+            <h3>Agendamento de Consultas</h3>
+            <p>Marque ou reinstale consultas na Unidade Básica de Saúde (UBS) mais próxima de sua residência.</p>
+        </div>
+        <div class="service-meta">
+            <span>Tempo: <strong>Agendado</strong></span>
+            <span class="status-badge">SUS / Gratuito</span>
+        </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="cards-services.html?servico=farmacia" class="service-card">
+        <div>
+            <h3>Farmácia Popular</h3>
+            <p>Encontre a lista de medicamentos gratuitos ou com desconto subsidiados pelo governo e saiba como retirar.</p>
+        </div>
+        <div class="service-meta">
+            <span>Retirada: <strong>Presencial</strong></span>
+            <span class="status-badge">SUS / Gratuito</span>
+        </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="cards-services.html?servico=cns" class="service-card">
+        <div>
+            <h3>Cartão Nacional de Saúde (CNS)</h3>
+            <p>Visualize o número do seu cartão do SUS ou emita a segunda via digital necessária para atendimentos em todo o país.</p>
+        </div>
+        <div class="service-meta">
+            <span>Acesso: <strong>Imediato</strong></span>
+            <span class="status-badge">SUS / Gratuito</span>
+        </div>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="cards-services.html?servico=exames" class="service-card">
+        <div>
+            <h3>Resultado de Exames</h3>
+            <p>Acesse com segurança os laudos e resultados de exames laboratoriais realizados na rede pública de saúde.</p>
+        </div>
+        <div class="service-meta">
+            <span>Disponível: <strong>Web / App</strong></span>
+            <span class="status-badge">SUS / Gratuito</span>
+        </div>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="cards-services.html?servico=doacao" class="service-card">
+        <div>
+            <h3>Doação de Sangue e Órgãos</h3>
+            <p>Declare-se doador, verifique os pré-requisitos obrigatórios e agende um horário no hemocentro do seu estado.</p>
+        </div>
+        <div class="service-meta">
+            <span>Ação: <strong>Voluntária</strong></span>
+            <span class="status-badge">SUS / Gratuito</span>
+        </div>
+    </a>
+
+</div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="main-footer">
+        <p>&copy; 2026 Ministério da Saúde - Governo Federal. Inspirado no Design System gov.br</p>
+    </footer>
+
+    <!-- Lógica de Filtro em Tempo Real (JavaScript) -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.service-card');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        const gridTitle = document.getElementById('gridTitle');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCardsCount = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                    visibleCardsCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (searchTerm === '') {
+                gridTitle.textContent = 'Todos os Serviços Disponíveis';
+                noResultsMessage.style.display = 'none';
+            } else {
+                gridTitle.textContent = `Resultados encontrados (${visibleCardsCount})`;
+                
+                if (visibleCardsCount === 0) {
+                    noResultsMessage.style.display = 'block';
+                } else {
+                    noResultsMessage.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
