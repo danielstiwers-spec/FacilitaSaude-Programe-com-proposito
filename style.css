@@ -434,17 +434,154 @@ main button{
     color:black;
     font-size: 40px;
 }
-.consultas li{
-    text-align: left;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: #2e2e2e;
-    font-size: larger;
-    font-weight: bold;
-    margin-bottom: 2%;
+/* Remove os pontos padrões e margens da lista */
+.consultas ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
-.consultas ul{
-    margin-left: 2%;
-    list-style-type: none;
+
+/* O "card" principal adaptado para o novo layout */
+.consulta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.consulta-item:hover {
+    border-color: #2b6cb0; /* Cor padrão do seu cabeçalho */
+    background-color: #f1f5f9;
+}
+
+/* Agrupador do lado esquerdo (Calendário + Texto) */
+.consulta-principal {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Mini Calendário Estilizado (Visual muito comum no gov.br) */
+.calendario-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 55px;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.calendario-badge .mes {
+    background-color: #2b6cb0; /* Cor idêntica ao seu cabeçalho */
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    width: 100%;
+    padding: 2px 0;
+    letter-spacing: 0.5px;
+}
+
+.calendario-badge .dia {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1e293b;
+    padding: 4px 0;
+}
+
+/* Informações de texto do médico */
+.medico-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.medico-nome {
+    font-weight: bold;
+    color: #2d3748;
+    font-size: 16px;
+}
+
+.medico-especialidade {
+    font-size: 13px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.consulta-horario {
+    font-size: 12px;
+    color: #718096;
+    margin-top: 4px;
+}
+
+/* Agrupador do lado direito (Status + Ações) */
+.consulta-acoes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+/* Badge de Status */
+.consulta-status {
+    background-color: #e6f4ea;
+    color: #137333;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+/* Alinhamento dos botões de ação */
+.botoes-grupo {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-acao {
+    border: 1px solid #cbd5e1;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #ffffff;
+    transition: all 0.15s ease;
+}
+
+/* Botão Reagendar - Estilo Sutil */
+.btn-reagendar {
+    color: #2b6cb0;
+    border-color: #2b6cb0;
+}
+
+.btn-reagendar:hover {
+    background-color: #2b6cb0;
+    color: #ffffff;
+}
+
+/* Botão Cancelar - Vermelho suave apenas no hover */
+.btn-cancelar {
+    color: #e53e3e;
+    border-color: #fed7d7;
+    background-color: #fff5f5;
+}
+
+.btn-cancelar:hover {
+    background-color: #e53e3e;
+    color: #ffffff;
+    border-color: #e53e3e;
 }
 footer{
     display: flex;

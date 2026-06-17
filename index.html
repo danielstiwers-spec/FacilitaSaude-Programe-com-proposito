@@ -8,47 +8,68 @@
     <!-- Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="charts.js" defer></script>
+    <!-- Adicione a linha abaixo: -->
+    <script src="consultas.js" defer></script>
+
     <!-- PWA / app meta -->
     <meta name="theme-color" content="#2b6cb0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="manifest" href="manifest.json">
     <script defer>
-    // Inline chart initialization moved here to ensure DOM is ready
-    document.addEventListener('DOMContentLoaded', function(){
-        // Ensure canvas elements exist before creating charts
-        function initChart(id, config){
-            var el = document.getElementById(id);
-            if(!el){
-                // create canvas and append to appropriate container
-                el = document.createElement('canvas');
-                el.id = id;
-                var container = document.querySelector('[data-chart="'+id+'"]') || document.body;
-                container.appendChild(el);
+        // Inline chart initialization moved here to ensure DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ensure canvas elements exist before creating charts
+            function initChart(id, config) {
+                var el = document.getElementById(id);
+                if (!el) {
+                    // create canvas and append to appropriate container
+                    el = document.createElement('canvas');
+                    el.id = id;
+                    var container = document.querySelector('[data-chart="' + id + '"]') || document.body;
+                    container.appendChild(el);
+                }
+                new Chart(el, config);
             }
-            new Chart(el, config);
-        }
 
-        // Meal
-        initChart('mealChart', {type:'doughnut', data:{labels:['Proteínas','Carboidratos','Gorduras'], datasets:[{data:[40,45,15]}]}});
+            // Meal
+            initChart('mealChart', {
+                type: 'doughnut',
+                data: { labels: ['Proteínas', 'Carboidratos', 'Gorduras'], datasets: [{ data: [40, 45, 15] }] }
+            });
 
-        // Water
-        initChart('waterChart', {type:'bar', data:{labels:['08h','10h','12h','14h','16h','18h'], datasets:[{label:'Copos', data:[1,2,2,1,2,1]}]}});
+            // Water
+            initChart('waterChart', {
+                type: 'bar',
+                data: { labels: ['08h', '10h', '12h', '14h', '16h', '18h'], datasets: [{ label: 'Copos', data: [1, 2, 2, 1, 2, 1] }] }
+            });
 
-        // Activities
-        initChart('activityChart', {type:'pie', data:{labels:['Caminhada','Academia','Corrida','Futebol'], datasets:[{data:[30,60,20,90]}]}});
+            // Activities
+            initChart('activityChart', {
+                type: 'pie',
+                data: { labels: ['Caminhada', 'Academia', 'Corrida', 'Futebol'], datasets: [{ data: [30, 60, 20, 90] }] }
+            });
 
-        // Heart
-        initChart('heartChart', {type:'line', data:{labels:['08h','10h','12h','14h','16h','18h'], datasets:[{label:'BPM', data:[72,75,78,120,88,74], tension:0.4}]}});
+            // Heart
+            initChart('heartChart', {
+                type: 'line',
+                data: { labels: ['08h', '10h', '12h', '14h', '16h', '18h'], datasets: [{ label: 'BPM', data: [72, 75, 78, 120, 88, 74], tension: 0.4 }] }
+            });
 
-        // Sleep
-        initChart('sleepChart', {type:'line', data:{labels:['22h','23h','00h','01h','02h','03h','04h'], datasets:[{label:'Qualidade do Sono', data:[70,78,75,82,88,85,90], fill:true, tension:0.3, backgroundColor:'rgba(54,162,235,0.2)', borderColor:'rgba(54,162,235,1)'}]}});
+            // Sleep
+            initChart('sleepChart', {
+                type: 'line',
+                data: {
+                    labels: ['22h', '23h', '00h', '01h', '02h', '03h', '04h'],
+                    datasets: [{ label: 'Qualidade do Sono', data: [70, 78, 75, 82, 88, 85, 90], fill: true, tension: 0.3, backgroundColor: 'rgba(54,162,235,0.2)', borderColor: 'rgba(54,162,235,1)' }]
+                }
+            });
 
-        // Try to register a service worker for app-like behavior
-        if('serviceWorker' in navigator){
-            navigator.serviceWorker.register('/sw.js').catch(()=>{});
-        }
-    });
+            // Try to register a service worker for app-like behavior
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => { });
+            }
+        });
     </script>
 </head>
 <body>
@@ -106,14 +127,84 @@
             </div>
         </div>
         <div class="consultas">
-            <h1>Próximas Consultas</h1>
-            <ul>
-                <li>Dr. John Doe - Sample Text.</li>
-                <li>Dra. Jane Smith - Sample Text.</li>
-                <li>Dr. Bob Johnson - Sample Text.</li>
-                <li>Dra. Alice Williams - Sample Text.</li>
-            </ul>
-        </div>
+    <h1>Próximas Consultas</h1>
+    <ul>
+        <!-- Médico 1 -->
+        <li>
+            <div class="consulta-item">
+                <!-- Esquerda: Ícone de Calendário + Detalhes do Médico -->
+                <div class="consulta-principal">
+                    <div class="calendario-badge">
+                        <span class="mes">JUN</span>
+                        <span class="dia">24</span>
+                    </div>
+                    <div class="medico-info">
+                        <span class="medico-nome">Dr. John Doe</span>
+                        <span class="medico-especialidade">Clínico Geral</span>
+                        <span class="consulta-horario">🕒 09:30h - Unidade Central</span>
+                    </div>
+                </div>
+                
+                <!-- Direita: Status + Botões de Ação -->
+                <div class="consulta-acoes">
+                    <span class="consulta-status">Confirmado</span>
+                    <div class="botoes-grupo">
+                        <button class="btn-acao btn-reagendar" onclick="reagendarConsulta('Dr. John Doe')">🔄 Reagendar</button>
+                        <button class="btn-acao btn-cancelar" onclick="cancelarConsulta(this, 'Dr. John Doe')" title="Cancelar Consulta">❌</button>
+</div>
+                </div>
+            </div>
+        </li>
+        
+        <!-- Médico 2 -->
+        <li>
+            <div class="consulta-item">
+                <div class="consulta-principal">
+                    <div class="calendario-badge">
+                        <span class="mes">JUL</span>
+                        <span class="dia">02</span>
+                    </div>
+                    <div class="medico-info">
+                        <span class="medico-nome">Dra. Jane Smith</span>
+                        <span class="medico-especialidade">Pediatra</span>
+                        <span class="consulta-horario">🕒 14:15h - Bloco B</span>
+                    </div>
+                </div>
+                <div class="consulta-acoes">
+                    <span class="consulta-status">Confirmado</span>
+                    <div class="botoes-grupo">
+                        <button class="btn-acao btn-reagendar" onclick="reagendarConsulta('Dra. Jane Smith')" title="Reagendar Consulta">🔄 Reagendar</button>
+                        <button class="btn-acao btn-cancelar" onclick="cancelarConsulta(this, 'Dra. Jane Smith')" title="Cancelar Consulta">❌</button>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <!-- Médico 3 -->
+        <li>
+            <div class="consulta-item">
+                <div class="consulta-principal">
+                    <div class="calendario-badge">
+                        <span class="mes">JUL</span>
+                        <span class="dia">15</span>
+                    </div>
+                    <div class="medico-info">
+                        <span class="medico-nome">Dr. Bob Johnson</span>
+                        <span class="medico-especialidade">Cardiologista</span>
+                        <span class="consulta-horario">🕒 10:00h - Instituto do Coração</span>
+                    </div>
+                </div>
+                <div class="consulta-acoes">
+                    <span class="consulta-status">Confirmado</span>
+                    <div class="botoes-grupo">
+                        <button class="btn-acao btn-reagendar" onclick="reagendarConsulta('Dr. Bob Johnson')" title="Reagendar Consulta">🔄 Reagendar</button>
+                        <button class="btn-acao btn-cancelar" onclick="cancelarConsulta(this, 'Dr. Bob Johnson')" title="Cancelar Consulta">❌</button>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
     </div>
     <footer>
         <div class="copyright">
