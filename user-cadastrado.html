@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Barra Superior Padrão Gov.br -->
+    <div class="gov-header-bar" style="background-color: #003366; color: #ffffff; padding: 8px 16px; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+        <span>brasil.gov.br</span>
+    </div>
+
+    <!-- Estrutura do App Logado -->
+    <div class="app-wrapper">
+        
+        <!-- BARRA LATERAL PARA USUÁRIO CADASTRADO -->
+        <aside class="sidebar-nav authenticated">
+            
+            <!-- Identificação do Cidadão Logado (Padrão app gov.br) -->
+            <div class="user-profile-summary">
+                <div class="user-avatar-circle">
+                    <!-- Iniciais do Usuário -->
+                    <span>JD</span>
+                </div>
+                <div class="user-details">
+                    <span class="user-name">John Doe</span>
+                    <!-- Selo de confiabilidade idêntico ao gov.br -->
+                    <span class="gov-account-badge ouro">Conta Ouro</span>
+                </div>
+            </div>
+            
+            <!-- Menu de Navegação Interna -->
+            <nav class="sidebar-menu">
+                <ul>
+                    <li><a href="index.html" class="active"><span class="icon">🏠</span> Início / Painel</a></li>
+                    <li><a href="rotina.html"><span class="icon">📅</span> Minha Rotina</a></li>
+                    <li><a href="profile.html"><span class="icon">👤</span> Meu Perfil</a></li>
+                    <li><a href="doubts.html"><span class="icon">❓</span> Dúvidas Frequentes</a></li>
+                </ul>
+            </nav>
+
+            <!-- Rodapé da Barra Lateral: Botão de Sair de forma discreta -->
+            <div class="sidebar-footer">
+                <a href="logout.html" class="btn-logout"><span class="icon">🚪</span> Sair da Conta</a>
+            </div>
+        </aside>
+
+        <!-- CONTAINER DA DIREITA: Conteúdo dos seus gráficos -->
+        <div class="main-content-area">
+            
+            <main>
+                <section class="hero">
+                    <h1>Olá, John! Bem-vindo ao seu Centro de Saúde</h1>
+                    <h2>Abaixo você confere o monitoramento atualizado da sua rotina e dados biométricos hoje.</h2>
+                </section>
+            </main>
+
+            <div class="primary">
+                <h1>Nutrição e Atividades</h1>
+                <div class="meals" data-chart="mealChart">
+                    <h1>Refeições do Dia</h1>
+                    <h2>Macronutrientes</h2>
+                </div>
+                <!-- ... Restante dos seus gráficos (Água e Atividades) ... -->
+            </div>
+
+            <div class="secondary">
+                <h1>Monitoramento de Saúde</h1>
+                <!-- ... Gráficos de Coração/Sono e o bloco de Próximas Consultas ... -->
+            </div>
+
+            <footer>
+                <div class="copyright">
+                    <h1>FacilitaSaúde</h1>
+                    <p>© 2026 FacilitaSaúde. Área Restrita do Cidadão.</p>
+                </div>
+            </footer>
+
+        </div> <!-- Fim da main-content-area -->
+    </div> <!-- Fim do app-wrapper -->
+</body>
+</html>

@@ -1,0 +1,179 @@
+/* Configurações Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Rawline", "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #333333;
+    line-height: 1.6;
+}
+.gov-header-bar {
+    background-color: #003366;
+    color: #ffffff;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.main-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e9ecef;
+    padding: 15px 16px;
+}
+
+.header-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-placeholder {
+    font-size: 24px;
+    font-weight: 800;
+    color: #2b6cb0; 
+    text-decoration: none;
+}
+
+.logo-placeholder span { color: #00875a; }
+
+.app-badge {
+    background-color: #718096;
+    color: white;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Estrutura do Conteúdo e Grid */
+.main-container {
+    max-width: 1140px;
+    margin: 40px auto 80px;
+    padding: 0 16px;
+}
+
+.page-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.page-header h1 {
+    color: #002f6c;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: #718096;
+    font-size: 16px;
+}
+
+/* Grid Inteligente */
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+/* Telas médias (Tablets) -> 2 cartões por linha */
+@media (min-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Telas grandes (Monitores) -> 4 cartões por linha */
+@media (min-width: 992px) {
+    .team-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Cartão do Membro do Time */
+.team-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.team-card:hover {
+    transform: translateY(-4px);
+    border-color: #2b6cb0;
+}
+
+/*  Foto Circular */
+.avatar-container {
+    width: 90px;
+    height: 90px;
+    background-color: #e2e8f0;
+    border-radius: 50%;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-svg {
+    width: 50px;
+    height: 50px;
+    fill: #718096;
+}
+
+.team-card h3 {
+    font-size: 18px;
+    color: #1a202c;
+    margin-bottom: 4px;
+}
+
+/* Cargo/Função */
+.role {
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+/* Biografia curta */
+.team-card p {
+    font-size: 14px;
+    color: #4a5568;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Garante que todos os botões fiquem alinhados embaixo mesmo com textos diferentes */
+}
+.github-link {
+    font-size: 13px;
+    color: #718096;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.team-card:hover .github-link {
+    color: #2b6cb0;
+    text-decoration: underline;
+}
+
+/* Rodapé */
+.main-footer {
+    background-color: #002f6c;
+    color: #ffffff;
+    text-align: center;
+    padding: 24px 16px;
+    font-size: 13px;
+}
