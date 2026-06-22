@@ -24,3 +24,35 @@ df = pd.read_excel("TACO.xlsx")
 
 print(df.head())
 print(df.columns)
+
+import sqlite3
+import pandas as pd
+
+conn = sqlite3.connect("taco.db")
+
+df = pd.read_excel("TACO.xlsx")
+
+df.to_sql(
+    "alimentos",
+    conn,
+    if_exists="replace",
+    index=False
+)
+
+conn.close()
+
+import requests
+
+url = "https://wger.de/api/v2/exercise/"
+
+dados = requests.get(url).json()
+
+print(dados)
+
+import requests
+
+url = "https://api.open-meteo.com/v1/forecast?latitude=-25.42&longitude=-49.27&current_weather=true"
+
+dados = requests.get(url).json()
+
+print(dados)
