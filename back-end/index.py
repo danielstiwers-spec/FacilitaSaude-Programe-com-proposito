@@ -74,3 +74,34 @@ def year_archive(request, year):
 </body>
 </html>
 """
+
+
+from pysus.online_data.SIM import download
+import pandas as pd
+
+# 1. Definir os parâmetros de busca
+# Exemplo: Estado de São Paulo (SP), ano de 2022
+estado = 'SP'
+ano = 2022
+
+print(f"Iniciando o download dos dados de mortalidade ({estado} - {ano})...")
+
+# 2. Baixar os dados (o PySUS busca direto do FTP e converte para DataFrame)
+# Nota: O retorno padrão do PySUS é um objeto que pode ser convertido em DataFrame
+dados_brutos = download(estado, ano)
+df = pd.DataFrame(dados_brutos)
+
+# 3. Visualizar as primeiras linhas do seu projeto
+print("\nDados carregados com sucesso!")
+print(df.head())
+
+# 4. Salvar em formato CSV para usar depois
+df.to_csv(f"mortalidade_{estado}_{ano}.csv", index=False)
+print(f"\nArquivo salvo como: mortalidade_{estado}_{ano}.csv")
+
+from pysus.preprocessing.decoders import decodificar_idade
+
+# Exemplo: O SUS codifica a idade de forma complexa (ex: 420 significa 20 anos). 
+# Essa função limpa e padroniza a idade em anos no seu DataFrame:
+df['idade_anos'] = decodificar_idade(df['IDADE'])
+
