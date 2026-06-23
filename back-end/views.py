@@ -1,33 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Usuario
 from django.contrib.auth.hashers import make_password
+from .forms import UsuarioForm
+import requests
 
-# Substitui o @app.route('/')
-def index(request):
-    return render(request, 'login.html')
+def cadastro_usuario(request):
+    # 1. Busca os estados da API do IBGE (seu script)
+    url_ibge = "https://ibge.gov.br"
+    try:
+        lista_estados = requests.get(url_ibge).json()
+        lista_estados = sorted(lista_estados, key=lambda k: k['nome'])
+    except Exception:
+        lista_estados = []
 
-# Substitui o @app.route('/enviar', methods=['POST'])
-def enviar_dados(request):
+    # 2. Se o usuário clicou no botão "Avançar" (Envio dos dados)
     if request.method == 'POST':
-        # request.POST.get substitui o request.form.get do Flask
-        cpf_info = request.POST.get('cpf')
-        rg_info = request.POST.get('rg')
-        email_info = request.POST.get('email')
-        senha_info = request.POST.get('senha')
+        form = UsuarioForm(request.POST, estados_choices=lista_estados)
+        
+        if form.is_valid():
+            # Cria o objeto mas não salva ainda para podermos criptografar a senha
+            usuario = form.save(commit=False)
+            usuario.senha = make_password(form.cleaned_data['senha'])
+            usuario.save() # Salva no banco de dados SQLite
 
-        # Criptografa a senha antes de salvar (Segurança que faltava no Flask!)
-        senha_criptografada = make_password(senha_info)
+            estado_selecionado = form.cleaned_data['estado']
+            return HttpResponse(f"Sucesso! Cadastrado e estado ({estado_selecionado}) registrado.")
 
-        # Salva no SQLite usando o ORM do Django (Sem códigos SQL manuais)
-        novo_usuario = Usuario(
-            cpf=cpf_info, 
-            rg=rg_info, 
-            email=email_info, 
-            senha=senha_criptografada
-        )
-        novo_usuario.save()
+    # 3. Se o usuário está apenas entrando na página (Carregamento inicial)
+    else:
+        form = UsuarioForm(estados_choices=lista_estados)
 
-        return HttpResponse("Dados cadastrados com sucesso no SQLite via Django!")
-    
-    return HttpResponse("Método não permitido.", status=405)
+    return render(request, 'login.html', {'form': form})

@@ -1,11 +1,9 @@
-<form action="/enviar" method="POST">
-    <!-- OBRIGATÓRIO NO DJANGO POR SEGURANÇA -->
+<form action="" method="POST">
     {% csrf_token %} 
 
-    <input type="text" name="cpf" placeholder="000.000.000-00">
-    <input type="text" name="rg" placeholder="00.000.000-0">
-    <input type="email" name="email" placeholder="nome@exemplo.com">
-    <input type="password" name="senha" placeholder="Digite sua senha">
+    <!-- O Django renderiza todos os inputs, placeholders e a lista do IBGE aqui -->
+    {{ form.as_p }}
 
     <button type="submit">Avançar</button>
 </form>
+
