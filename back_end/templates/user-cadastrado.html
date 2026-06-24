@@ -7,29 +7,28 @@
     <link rel="stylesheet" href="/user.css">
 </head>
 <body>
-    <!-- Barra Superior Padrão Gov.br -->
-    <div class="gov-header-bar" style="background-color: #003366; color: #ffffff; padding: 8px 16px; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+    <div class="gov-header-bar">
         <span>BRASIL.PR.GOV.BR</span>
+        <button type="button" class="mobile-menu-button" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 
-    <!-- Estrutura do App Logado -->
+    <div class="sidebar-backdrop"></div>
     <div class="app-wrapper">
-        
-        <!-- BARRA LATERAL PARA USUÁRIO CADASTRADO -->
         <aside class="sidebar-nav authenticated">
-            
-            <!-- Identificação do Cidadão Logado (Padrão app gov.br) -->
             <div class="user-profile-summary">
                 <div class="user-avatar-circle">
-                    <!-- Iniciais do Usuário -->
-                    <span>JD</span>
+                    <span>{{ initials }}</span>
                 </div>
                 <div class="user-details">
-                    <span class="user-name">John Doe</span>
+                    <span class="user-name">{{ display_name }}</span>
+                    <span class="user-email">{{ usuario.email }}</span>
                 </div>
             </div>
-            
-            <!-- Menu de Navegação Interna -->
+
             <nav class="sidebar-menu">
                 <ul>
                     <li><a href="/index.html" class="active">Início</a></li>
@@ -39,42 +38,76 @@
                 </ul>
             </nav>
 
-            <!-- Rodapé da Barra Lateral: Botão de Sair de forma discreta -->
             <div class="sidebar-footer">
                 <a href="/index.html" class="btn-logout">Sair da Conta</a>
             </div>
         </aside>
 
-        <!-- CONTAINER DA DIREITA: Conteúdo dos seus gráficos -->
         <div class="main-content-area">
-            
             <main>
-                <section class="hero">
-                    <h1>Olá, John! Bem-vindo ao seu Centro de Saúde</h1>
-                    <h2>Abaixo você confere o monitoramento atualizado da sua rotina e dados biométricos hoje.</h2>
+                <section class="page-header">
+                    <p class="page-tag">Bem-vindo ao seu Centro de Saúde</p>
+                    <h1>Olá, {{ display_name }}!</h1>
+                    <p class="page-description">Abaixo você confere o monitoramento atualizado da sua rotina e dados biométricos hoje.</p>
                 </section>
 
-                <div class="primary">
-                    <h1>Nutrição e Atividades</h1>
-                    <div class="meals" data-chart="mealChart">
-                        <h1>Refeições do Dia</h1>
-                        <h2>Macronutrientes</h2>
-                    </div>
-                </div>
+                <section class="user-data-summary">
+                    <div class="summary-card">
+                        <div class="summary-card-header">
+                            <h2>Dados do usuário</h2>
+                        </div>
 
-                <div class="secondary">
-                    <h1>Monitoramento de Saúde</h1>
-                </div>
+                        <div class="summary-list">
+                            <div>
+                                <span class="summary-label">Email</span>
+                                <span class="summary-value">{{ usuario.email }}</span>
+                            </div>
+                            <div>
+                                <span class="summary-label">CPF</span>
+                                <span class="summary-value">{{ usuario.cpf }}</span>
+                            </div>
+                            <div>
+                                <span class="summary-label">RG</span>
+                                <span class="summary-value">{{ usuario.rg }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="dashboard-grid">
+                    <article class="dashboard-card">
+                        <h3>Nutrição e Atividades</h3>
+                        <p>Resumo diário das refeições e metas de atividade física.</p>
+                    </article>
+                    <article class="dashboard-card">
+                        <h3>Refeições do Dia</h3>
+                        <p>Siga o plano nutricional com informações de macronutrientes.</p>
+                    </article>
+                    <article class="dashboard-card">
+                        <h3>Monitoramento de Saúde</h3>
+                        <p>Acompanhe seus indicadores biométricos e bem-estar.</p>
+                    </article>
+                </section>
             </main>
 
-            <footer>
-                <div class="copyright">
-                    <h1>FacilitaSaúde</h1>
-                    <p>© 2026 FacilitaSaúde. Área Restrita do Cidadão.</p>
-                </div>
+            <footer class="page-footer">
+                <p>© 2026 FacilitaSaúde. Área Restrita do Cidadão.</p>
             </footer>
+        </div>
+    </div>
 
-        </div> <!-- Fim da main-content-area -->
-    </div> <!-- Fim do app-wrapper -->
+    <script>
+        const body = document.body;
+        const menuButton = document.querySelector('.mobile-menu-button');
+        const backdrop = document.querySelector('.sidebar-backdrop');
+
+        if (menuButton) {
+            menuButton.addEventListener('click', () => body.classList.toggle('sidebar-open'));
+        }
+
+        if (backdrop) {
+            backdrop.addEventListener('click', () => body.classList.remove('sidebar-open'));
+        }
+    </script>
 </body>
 </html>
