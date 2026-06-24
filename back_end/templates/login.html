@@ -14,26 +14,45 @@
         <h2>Identifique-se no gov.br</h2>
         <p class="subtitle">Digite seus dados pessoais para acessar sua conta única.</p>
 
-        <form action="/cadastro/" method="POST">
+        <form action="{% url 'cadastro' %}" method="POST">
             {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
             <div class="input-field">
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14" required>
+                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14" required value="{{ form.cpf.value|default_if_none:'' }}">
+                {% if form.cpf.errors %}
+                    <div class="field-error">{{ form.cpf.errors|striptags }}</div>
+                {% endif %}
             </div>
             
             <div class="input-field">
                 <label for="rg">RG</label>
-                <input type="text" id="rg" name="rg" placeholder="00.000.000-0" maxlength="12" required>
+                <input type="text" id="rg" name="rg" placeholder="00.000.000-0" maxlength="12" required value="{{ form.rg.value|default_if_none:'' }}">
+                {% if form.rg.errors %}
+                    <div class="field-error">{{ form.rg.errors|striptags }}</div>
+                {% endif %}
             </div>
 
             <div class="input-field">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
+                <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required value="{{ form.email.value|default_if_none:'' }}">
+                {% if form.email.errors %}
+                    <div class="field-error">{{ form.email.errors|striptags }}</div>
+                {% endif %}
             </div>
             
             <div class="input-field">
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="senha" placeholder="Digite sua senha" required>
+                {% if form.senha.errors %}
+                    <div class="field-error">{{ form.senha.errors|striptags }}</div>
+                {% endif %}
             </div>
 
             <button type="submit" class="login-btn">Avançar</button>

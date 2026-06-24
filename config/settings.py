@@ -17,6 +17,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
 
+# Trusted origins for CSRF when using localhost with explicit scheme/port
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'https://localhost:8000',
+]
 
 # Application definition
 INSTALLED_APPS = [
