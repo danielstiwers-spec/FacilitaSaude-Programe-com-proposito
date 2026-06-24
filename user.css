@@ -56,20 +56,6 @@
     font-size: 15px;
 }
 
-/* Selo "Conta Ouro" inspirado diretamente no app gov.br */
-.gov-account-badge.ouro {
-    background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 100%);
-    color: #5c4033;
-    font-size: 11px;
-    font-weight: 800;
-    padding: 2px 8px;
-    border-radius: 12px;
-    margin-top: 4px;
-    width: fit-content;
-    text-transform: uppercase;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
 /* Menu de Abas Internas */
 .sidebar-menu ul { list-style: none; padding: 0; margin: 0; }
 .sidebar-menu ul li { margin: 4px 16px; }

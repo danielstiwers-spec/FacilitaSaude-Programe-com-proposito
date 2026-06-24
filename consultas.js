@@ -25,11 +25,12 @@ function cancelarConsulta(botaoClicado, nomeMedico) {
 }
 
 /**
- * Função para simular o reagendamento de uma consulta
+ * Função para reagendar uma consulta
  * @param {string} nomeMedico - Nome do médico para exibir no alerta
  */
 function reagendarConsulta(nomeMedico) {
-    alert(`Você foi direcionado para a tela de escolha de horários para: ${nomeMedico}.\n\n(Aqui você pode integrar com o seu sistema de calendário ou redirecionar para a página de serviços do SUS).`);
+    // Redireciona para a página de serviços
+    window.location.href = 'services.html';
 }
 
 /**
