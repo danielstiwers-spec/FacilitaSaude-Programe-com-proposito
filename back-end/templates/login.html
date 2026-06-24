@@ -1,0 +1,11 @@
+import requests
+url = ''
+<form action="" method="POST">
+    {% csrf_token %} 
+
+    <!-- O Django renderiza todos os inputs, placeholders e a lista do IBGE aqui -->
+    {{ form.as_p }}
+
+    <button type="submit">Avançar</button>
+</form>
+
