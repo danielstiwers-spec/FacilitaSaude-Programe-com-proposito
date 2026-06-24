@@ -3,6 +3,13 @@ from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
 from .forms import UsuarioForm
 
+def login_view(request):
+    form = UsuarioForm()
+    return render(request, 'login.html', {'form': form})
+
+def user_cadastrado_view(request):
+    return render(request, 'user-cadastrado.html')
+
 def cadastro_usuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
@@ -13,8 +20,8 @@ def cadastro_usuario(request):
             usuario.senha = make_password(form.cleaned_data['senha'])
             usuario.save()  # Salva no banco de dados
 
-            # Redireciona para home ou página de sucesso
-            return HttpResponse("✅ Cadastro realizado com sucesso! Bem-vindo ao FacilitaSaúde.")
+            # Redireciona para página de usuário cadastrado
+            return redirect('/user-cadastrado/')
 
     else:
         form = UsuarioForm()
