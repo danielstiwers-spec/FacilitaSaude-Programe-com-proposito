@@ -234,7 +234,7 @@ header li{
     display: flex;
 }
 main{
-    background-image: url(Imagens/Qualifications-to-Become-a-Doctor--scaled.webp);
+    background-image: url(../Imagens/Qualifications-to-Become-a-Doctor--scaled.webp);
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
@@ -246,7 +246,7 @@ main{
     padding: 0 1.5rem;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
     header {
         padding: 0.75rem 1rem;
     }
@@ -464,10 +464,7 @@ main button{
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-image: url(Imagens/Healthcare.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 890px;
+    width: 100%;
 }
 .secondary h1{
     color: #00418b;
@@ -526,7 +523,7 @@ main button{
     color:black;
     font-size: 40px;
 }
-/* Remove os pontos padrões e margens da lista */
+
 .consultas ul {
     list-style: none;
     padding: 0;
@@ -549,18 +546,18 @@ main button{
 }
 
 .consulta-item:hover {
-    border-color: #2b6cb0; /* Cor padrão do seu cabeçalho */
+    border-color: #2b6cb0; 
     background-color: #f1f5f9;
 }
 
-/* Agrupador do lado esquerdo (Calendário + Texto) */
+/* Calendário + Texto */
 .consulta-principal {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-/* Mini Calendário Estilizado (Visual muito comum no gov.br) */
+/* Mini Calendário */
 .calendario-badge {
     display: flex;
     flex-direction: column;
@@ -575,7 +572,7 @@ main button{
 }
 
 .calendario-badge .mes {
-    background-color: #2b6cb0; /* Cor idêntica ao seu cabeçalho */
+    background-color: #2b6cb0;
     color: #ffffff;
     font-size: 11px;
     font-weight: bold;
@@ -591,7 +588,7 @@ main button{
     padding: 4px 0;
 }
 
-/* Informações de texto do médico */
+/* Informações do médico */
 .medico-info {
     display: flex;
     flex-direction: column;
@@ -616,7 +613,7 @@ main button{
     margin-top: 4px;
 }
 
-/* Agrupador do lado direito (Status + Ações) */
+/* Status + Ações */
 .consulta-acoes {
     display: flex;
     flex-direction: column;
@@ -652,7 +649,7 @@ main button{
     transition: all 0.15s ease;
 }
 
-/* Botão Reagendar - Estilo Sutil */
+/* Botão Reagendar */
 .btn-reagendar {
     color: #2b6cb0;
     border-color: #2b6cb0;
@@ -663,7 +660,7 @@ main button{
     color: #ffffff;
 }
 
-/* Botão Cancelar - Vermelho suave apenas no hover */
+/* Botão Cancelar */
 .btn-cancelar {
     color: #e53e3e;
     border-color: #fed7d7;
