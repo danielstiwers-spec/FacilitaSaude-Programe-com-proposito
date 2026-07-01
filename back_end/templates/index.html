@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FacilitaSaúde</title>
+    {% include 'favicon.html' %}
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f7f9fc; color: #1f2937; }
+        main { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
+        .card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        ul { padding-left: 18px; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Dashboard de saúde</h1>
+        <p>Os dados abaixo agora são gerados pelo código Python do projeto.</p>
+
+        <div class="card">
+            <h2>Resumo de gráficos</h2>
+            <div class="grid">
+                {% for chart_id, chart in chart_configs.items %}
+                    <div class="card">
+                        <h3>{{ chart_id }}</h3>
+                        <p><strong>Tipo:</strong> {{ chart.type }}</p>
+                        <p><strong>Rótulos:</strong> {{ chart.data.labels|join:", " }}</p>
+                        <p><strong>Valores:</strong> {{ chart.data.datasets.0.data|join:", " }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Próximas consultas</h2>
+            {% if consultas_status.tipo == 'com_dados' %}
+                <ul>
+                    {% for consulta in consultas %}
+                        <li>
+                            <strong>{{ consulta.nome_medico }}</strong> — {{ consulta.especialidade }}<br>
+                            {{ consulta.dia }}/{{ consulta.mes }} • {{ consulta.horario }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>{{ consultas_status.mensagem }}</p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

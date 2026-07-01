@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotina</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f7f9fc; color: #1f2937; }
+        main { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+        .card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+        .bar { height: 16px; background: #e5e7eb; border-radius: 999px; overflow: hidden; margin-top: 8px; }
+        .fill { height: 100%; background: #2b6cb0; width: {{ rotina_state.agua.porcentagem }}%; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Rotina de bem-estar</h1>
+        <div class="card">
+            <h2>Água</h2>
+            <p>{{ rotina_state.agua.litros_formatados }} de {{ rotina_state.agua.meta_agua_ml }} ml</p>
+            <div class="bar"><div class="fill"></div></div>
+            <p>{{ rotina_state.agua.porcentagem }}% atingido</p>
+        </div>
+
+        <div class="card">
+            <h2>Histórico de sono</h2>
+            <pre>{{ rotina_state.sleep_chart|pprint }}</pre>
+        </div>
+    </main>
+</body>
+</html>
