@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
+    'accounts',
     'back_end',  # Nossa app
 ]
 
@@ -104,7 +105,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-  
 
-
-  AUTH_USER_MODEL = "accounts.Usuario"
+AUTH_USER_MODEL = "accounts.Usuario"
