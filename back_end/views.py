@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import check_password
 from python_modules.charts import build_chart_configs
 from python_modules.consultas import checar_consultas_vazias, get_consultas_exemplo
 from python_modules.rotina import inicializar_rotina
 from .forms import UsuarioForm
-from .models import Usuario, GlossaryEntry
+from .models import GlossaryEntry
 from .initial_glossary_data import INITIAL_GLOSSARY_TERMS
+from apps.accounts.models import Usuario
 
 
 def home_view(request):
@@ -96,15 +97,13 @@ def cadastro_usuario(request):
             usuario = Usuario.objects.filter(email=email).first()
 
             if usuario:
-                if check_password(senha, usuario.senha):
+                if check_password(senha, usuario.password):
                     request.session['usuario_id'] = usuario.id
                     return redirect('/user-cadastrado.html')
                 else:
                     form.add_error('senha', 'Senha incorreta para este usuário.')
             else:
-                usuario = form.save(commit=False)
-                usuario.senha = make_password(senha)
-                usuario.save()
+                usuario = form.save()
                 request.session['usuario_id'] = usuario.id
                 return redirect('/user-cadastrado.html')
     else:

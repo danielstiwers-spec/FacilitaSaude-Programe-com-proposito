@@ -1,38 +1,40 @@
 from django import forms
-from .models import Usuario
+from apps.accounts.models import Usuario
 
-class UsuarioForm(forms.ModelForm):
+
+class UsuarioForm(forms.Form):
+    cpf = forms.CharField(
+        required=True,
+        label='CPF',
+        widget=forms.TextInput(attrs={'placeholder': '000.000.000-00', 'maxlength': '14'}),
+        error_messages={'required': 'Insira um CPF válido.'},
+    )
+    rg = forms.CharField(
+        required=True,
+        label='RG',
+        widget=forms.TextInput(attrs={'placeholder': '00.000.000-0', 'maxlength': '12'}),
+        error_messages={'required': 'Insira um RG válido.'},
+    )
+    email = forms.EmailField(
+        required=True,
+        label='Email',
+        widget=forms.EmailInput(attrs={'placeholder': 'nome@exemplo.com'}),
+        error_messages={
+            'required': 'Insira um e-mail válido.',
+            'invalid': 'Insira um e-mail válido.',
+        },
+    )
     senha = forms.CharField(
         widget=forms.PasswordInput,
         label='Senha',
-        error_messages={
-            'required': 'Insira uma senha válida.',
-        }
+        error_messages={'required': 'Insira uma senha válida.'},
     )
-    
-    class Meta:
-        model = Usuario
-        fields = ['cpf', 'rg', 'email', 'senha']
-        labels = {
-            'cpf': 'CPF',
-            'rg': 'RG',
-            'email': 'Email',
-            'senha': 'Senha'
-        }
-        widgets = {
-            'cpf': forms.TextInput(attrs={'placeholder': '000.000.000-00', 'maxlength': '14'}),
-            'rg': forms.TextInput(attrs={'placeholder': '00.000.000-0', 'maxlength': '12'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'nome@exemplo.com'}),
-        }
-        error_messages = {
-            'cpf': {
-                'required': 'Insira um CPF válido.',
-            },
-            'rg': {
-                'required': 'Insira um RG válido.',
-            },
-            'email': {
-                'required': 'Insira um e-mail válido.',
-                'invalid': 'Insira um e-mail válido.',
-            },
-        }
+
+    def save(self):
+        username = self.cleaned_data['email'].split('@')[0]
+        return Usuario.objects.create_user(
+            username=username,
+            email=self.cleaned_data['email'],
+            password=self.cleaned_data['senha'],
+            cpf=self.cleaned_data['cpf'],
+        )

@@ -3,5 +3,6 @@
     "liveServer.settings.port": 5502,
     "chat.tools.terminal.autoApprove": {
         "git add": true
-    }
+    },
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }

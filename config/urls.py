@@ -8,7 +8,7 @@ from django.views.static import serve
 from django.urls import re_path
 
 urlpatterns = [
-    # path('', include('back_end.urls')),
+    path('', include('back_end.urls')),
 ]
 
 # Serve static files during development

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'back_end',
     'apps.accounts',
     'apps.alimentos',
     'apps.api',
@@ -122,7 +123,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-  
 
-
-  AUTH_USER_MODEL = "accounts.Usuario"
+AUTH_USER_MODEL = "accounts.Usuario"
