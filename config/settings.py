@@ -28,7 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
-    'back_end',  # Nossa app
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'accounts',
+    'back_end',
 ]
 
 MIDDLEWARE = [
@@ -36,6 +39,8 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -43,13 +48,18 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'back_end', 'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'back_end', 'templates'),
+            os.path.join(BASE_DIR, 'HTML'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.static',
+                'django.contrib.messages.context_processors.messages',
             ],
         },
     },
@@ -104,7 +114,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-  
 
-
-  AUTH_USER_MODEL = "accounts.Usuario"
+AUTH_USER_MODEL = 'accounts.Usuario'
