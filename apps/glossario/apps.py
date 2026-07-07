@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class GlossarioConfig(AppConfig):
-    name = "glossario"
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = "apps.glossario"
+    label = "glossario"

@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class MedicamentosConfig(AppConfig):
-    name = "medicamentos"
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = "apps.medicamentos"
+    label = "medicamentos"

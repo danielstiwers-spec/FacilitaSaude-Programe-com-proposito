@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class ClimaConfig(AppConfig):
-    name = "clima"
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = "apps.clima"
+    label = "clima"
