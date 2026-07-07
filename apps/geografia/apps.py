@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class GeografiaConfig(AppConfig):
-    name = "geografia"
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = "apps.geografia"
+    label = "geografia"

@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class DoencasConfig(AppConfig):
-    name = "doencas"
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = "apps.doencas"
+    label = "doencas"

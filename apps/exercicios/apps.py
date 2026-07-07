@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class ExerciciosConfig(AppConfig):
-    name = "exercicios"
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = "apps.exercicios"
+    label = "exercicios"
