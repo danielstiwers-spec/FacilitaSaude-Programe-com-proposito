@@ -28,7 +28,18 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
-    'back_end',  # Nossa app
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'apps.accounts',
+    'apps.alimentos',
+    'apps.api',
+    'apps.clima',
+    'apps.core',
+    'apps.doencas',
+    'apps.exercicios',
+    'apps.geografia',
+    'apps.glossario',
+    'apps.medicamentos',
 ]
 
 MIDDLEWARE = [
